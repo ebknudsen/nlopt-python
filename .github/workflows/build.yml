@@ -74,7 +74,7 @@ jobs:
           CIBW_BUILD: cp312-*
           CIBW_SKIP: "*-win* *-manylinux_i686 *-musllinux*"
           # use latest build
-          CIBW_MANYLINUX_X86_64_IMAGE: python/3.12-bookworm
+          CIBW_MANYLINUX_X86_64_IMAGE: python:3.12-bookworm
           CIBW_BEFORE_ALL_MACOS: brew install swig
           CIBW_BEFORE_BUILD: pip install numpy
         run: |
