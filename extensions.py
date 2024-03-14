@@ -4,7 +4,7 @@ import platform
 import shutil
 import sys
 from pathlib import Path
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError, check_output
 from typing import Dict, List
 
 from setuptools import Extension
@@ -113,4 +113,18 @@ def create_directory(path: Path):
 
 def execute_command(cmd: List[str], cwd: Path, env: Dict[str, str] = os.environ):
     logging.info(f"Running Command: {cwd.as_posix()}: {' '.join(cmd)}")
-    check_call(cmd, cwd=cwd.as_posix(), env=env)
+    try:
+        output = check_output(cmd, cwd=cwd.as_posix(), env=env)
+        logging.info(output)
+    except CalledProcessError as e:
+        if isinstance(e.output, bytes):
+            output = e.output.decode("utf-8")
+        elif isinstance(e.output, str):
+            output = e.output
+        elif e.output is None:
+            output = ""
+        else:
+            output = str(e.output)
+
+        logging.info('\n'.join([f'{"-" * 20} ERROR {"-" * 20}', output or "", ]))
+        raise e
