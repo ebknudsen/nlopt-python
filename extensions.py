@@ -57,10 +57,10 @@ class NLOptBuild(build_ext):
         ]
 
         if platform.system() == "Windows":
-            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so")
+            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd")
             cmd.insert(2, f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{self.config.upper()}={_ed}")
         else:
-            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd")
+            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so")
 
         cmd.append(ext.source_dir.as_posix())
 
@@ -126,5 +126,5 @@ def execute_command(cmd: List[str], cwd: Path, env: Dict[str, str] = os.environ)
         else:
             output = str(e.output)
 
-        logging.info('\n'.join([f'{"-" * 20} ERROR {"-" * 20}', output or "", ]))
+        logging.info('\n'.join([f'{"-" * 20} ERROR {"-" * 20}', output, ]))
         raise e
