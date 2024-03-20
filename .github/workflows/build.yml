@@ -62,15 +62,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Setup Python 3.6
-        uses: actions/setup-python@v2
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.6'
+          python-version: '3.8'
 
       - name: Build wheels
         env:
-          # only build CPython-3.6+ and skip 32-bit builds and skip windows
-          CIBW_BUILD: cp36-*
+          # only build CPython-3.8+ and skip 32-bit builds and skip windows
+          CIBW_BUILD: cp38-*
           CIBW_SKIP: "*-win* *-manylinux_i686 *-musllinux*"
           # use latest build
           CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux2014_x86_64
@@ -82,7 +82,7 @@ jobs:
           ls -R dist
 
       - name: Place wheels in artifacts folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: ./dist/*.whl
 
