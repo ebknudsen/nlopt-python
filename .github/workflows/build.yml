@@ -86,7 +86,7 @@ jobs:
           path: ./dist/*.whl
 
   test-wheels:
-    name: Test wheels ${{ matrix os }} ${{ matrix.python_version }}
+    name: Test wheels ${{ matrix.os }} ${{ matrix.python_version }}
     needs: [ build_wheels_windows, build_wheels_unix ]
     runs-on: ${{ matrix.os }}
     strategy:
