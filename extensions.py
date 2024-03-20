@@ -58,9 +58,9 @@ class NLOptBuild(build_ext):
         ]
 
         if platform.system() == "Windows":
-            cmd += "-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so"
+            cmd += ["-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so"]
         else:
-            cmd += "-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd"
+            cmd += ["-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd"]
         abi3_flag = "-DPy_LIMITED_API=0x03060000"
 
         if platform.system() == "Windows":
