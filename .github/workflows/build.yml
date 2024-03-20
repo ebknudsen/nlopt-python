@@ -62,15 +62,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Setup Python 3.8
+      - name: Setup Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
+          python-version: '3.12'
 
       - name: Build wheels
         env:
           # only build CPython-3.8+ and skip 32-bit builds and skip windows
-          CIBW_BUILD: cp38-*
+          CIBW_BUILD: cp312-*
           CIBW_SKIP: "*-win* *-manylinux_i686 *-musllinux*"
           # use latest build
           CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux2014_x86_64
@@ -93,7 +93,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
-        python-version: [ '3.11' ]
+        python-version: [ '3.12' ]
 
     steps:
       - name: Checkout repository
