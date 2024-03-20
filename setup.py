@@ -18,18 +18,6 @@ with open(Path(__file__).parent / "extern" / "nlopt" / "CMakeLists.txt") as f:
         version.append(m.group(1))
     version = ".".join(version)
 
-
-#class bdist_wheel_abi3(bdist_wheel):
-#    def get_tag(self):
-#        python, abi, plat = super().get_tag()
-#
-#        if python.startswith("cp"):
-#            # on CPython, our wheels are abi3 and compatible back to 3.6
-#            return "cp39", "abi3", plat
-#
-#        return python, abi, plat
-
-
 setup(
     version=version,
     install_requires=["numpy >=1.18.5"],
@@ -37,4 +25,3 @@ setup(
     cmdclass={"build_ext": NLOptBuild},
     zip_safe=False,
 )
-#              "bdist_wheel": bdist_wheel_abi3},
