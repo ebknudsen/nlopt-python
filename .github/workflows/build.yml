@@ -50,13 +50,13 @@ jobs:
           path: ./dist/*.whl
 
   build_wheels_unix:
-    name: Build wheels on ${{ matrix.os }}
+    name: Build wheels on ${{ matrix.os }} ${{ matrix.python_version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: False
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-        python-version: [ 3.9, '3.10', '3.11', '3.12' ]
+        python_version: [ '3.9', '3.10', '3.11', '3.12' ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -86,13 +86,13 @@ jobs:
           path: ./dist/*.whl
 
   test-wheels:
-    name: Test wheels
+    name: Test wheels ${{ matrix os }} ${{ matrix.python_version }}
     needs: [ build_wheels_windows, build_wheels_unix ]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
-        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        python_version: [ '3.9', '3.10', '3.11', '3.12' ]
 
     steps:
       - name: Checkout repository
