@@ -56,15 +56,15 @@ class NLOptBuild(build_ext):
             "-DNLOPT_OCTAVE=OFF",
         ]
 
-        if platform.system() == "Windows":
-            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd")
-            cmd.insert(2, f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{self.config.upper()}={_ed}")
-        else:
-            cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so")
+        #if platform.system() == "Windows":
+        #    cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.pyd")
+        #    cmd.insert(2, f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{self.config.upper()}={_ed}")
+        #else:
+        #    cmd.append("-DPYTHON_EXTENSION_MODULE_SUFFIX=.abi3.so")
 
         cmd.append(ext.source_dir.as_posix())
 
-        abi3_flag = "-DPy_LIMITED_API=0x03060000"
+        #abi3_flag = "-DPy_LIMITED_API=0x03060000"
         execute_command(
             cmd=cmd,
             cwd=build_dir,
