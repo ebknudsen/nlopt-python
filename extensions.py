@@ -70,7 +70,7 @@ class NLOptBuild(build_ext):
             cwd=build_dir,
             env={
                 **os.environ.copy(),
-                "CXXFLAGS": f'{os.environ.get("CXXFLAGS", "")} -DVERSION_INFO="{self.distribution.get_version()}" {abi3_flag}'
+                "CXXFLAGS": f'{os.environ.get("CXXFLAGS", "")} -DVERSION_INFO="{self.distribution.get_version()}"'
             })
 
         # build the DLL
