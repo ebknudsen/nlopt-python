@@ -34,7 +34,7 @@ setup(
     version=version,
     install_requires=["numpy >=1.18.5"],
     ext_modules=[NLOptBuildExtension("nlopt._nlopt", version)],
-    cmdclass={"build_ext": NLOptBuild}
+    cmdclass={"build_ext": NLOptBuild},
     zip_safe=False,
 )
 #              "bdist_wheel": bdist_wheel_abi3},
